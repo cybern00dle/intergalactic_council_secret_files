@@ -165,9 +165,10 @@ class FGN_student(Character):
         2. HSE
         3. рюкзак
         4. сказать, что тоже не знаете'''
-        self.close_to_end_coef = ''
-        self.have_we_met_before = ''
+        self.close_to_end_coef = 1
+        self.have_we_met_before = 0
         self.level = ''
+        self.artefact = 'купон на шаурму'
 
 class Booklets(Character):
     def __init__(self):
@@ -220,9 +221,10 @@ class Booklets(Character):
         2. выбрать синий буклет
         3. сказать, что оба дизайна хороши
         4. сказать, что ничего не понимаете в дизайне'''
-        self.close_to_end_coef = ''
-        self.have_we_met_before = ''
+        self.close_to_end_coef = 1
+        self.have_we_met_before = 0
         self.level = ''
+        self.artefact = 'два буклета ОП "Фундаментальная и прикладная лингвистика"'
 
 class Cleaner(Character):
     def __init__(self):
@@ -268,9 +270,10 @@ class Cleaner(Character):
         2. согласиться и взять ведро по бокам
         3. сделать вид, что торопитесь на пару, и попросить помочь проходящего мимо студента
         4. сделать вид, что торопитесь на пару, и проигнорировать просьбу'''
-        self.close_to_end_coef = ''
-        self.have_we_met_before = ''
+        self.close_to_end_coef = 1
+        self.have_we_met_before = 0
         self.level = ''
+        self.artefact = 'вязаный воронёнок'
         
 class Timur(Character):
     def __init__(self):
@@ -317,9 +320,10 @@ class Timur(Character):
         2. согласиться и попробовать сложить самолётик
         3. вежливо отказаться
         4. не очень вежливо отказаться'''
-        self.close_to_end_coef = ''
-        self.have_we_met_before = ''
+        self.close_to_end_coef = 1
+        self.have_we_met_before = 0
         self.level = ''
+        self.artefact = 'бумажный кинжал'
 
 class Strange_group(Character):
     def __init__(self):
@@ -356,6 +360,7 @@ class Strange_group(Character):
         Безымянная группа: и, возможно, мы сможем помочь в ответ.
         1. согласиться
         2. не соглашаться'''
-        self.close_to_end_coef = ''
-        self.have_we_met_before = ''
+        self.close_to_end_coef = 1
+        self.have_we_met_before = 0
         self.level = ''
+        self.artefact = 'книжечка "Тайны ФГН"'
