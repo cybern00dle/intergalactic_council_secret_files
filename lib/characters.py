@@ -3,102 +3,122 @@ from lib.character import Character
 class The_lost_child(Character):
     def __init__(self):
         super().__init__()
-        self.name = ''
+        self.name = 'Ребёнок, который пришел на олимпиаду и потерялся'
         self.picture = ''
-        self.hello = ''
-        self.goodbye = '' 
-        self.good_end = ''
-        self.trigger_good_end = ''
-        self.bad_end = ''
-        self.trigger_bad_end = '' 
-        self.death = ''
-        self.trigger_death = ''
-        self.neutral_end = ''
-        self.trigger_neutral_end = '' 
-        self.question = ''
-        self.close_to_end_coef = '' 
-        self.have_we_met_before = ''
-        self.level = ''
+        self.hello = 'Привет!'
+        self.goodbye = 'Пока' 
+        self.good_end = 'Спасибо! Знаешь, никогда не поливай цветы кофе. А еще не гладь кота против шерсти.'
+        self.trigger_good_end = '3'
+        self.bad_end = '*Вы проходите мимо и чувствуете, как вам в спину прилетает железная линейка. неприятно.*'
+        self.trigger_bad_end = '2' 
+        self.death = 'зря вы так. *ребенок устал и хочет домой. он не хочет оставаться в вышке. Но он-то попадет домой, а вы уже нет. Вы мертвы.*'
+        self.trigger_death = '4'
+        self.neutral_end = 'А вы точно волонтер? я лучше кого-нибудь еще поищу. *ребенок быстро уходит, несколько раз подозрительно оглядываясь*'
+        self.trigger_neutral_end = '1' 
+        self.question = 'Где здесь выход?\n\n1. Не знаю. Я здесь родилась и здесь умру.\n2. *молча пройти мимо*\n3. Пойдем вместе найдем. *проводить ребенка*\n4. Зачем тебе уходить, тебе в вышке не нравится?'
+        self.close_to_end_coef = 1
+        self.have_we_met_before = 0
+        self.level = 7
+        self.artefact = ''
 
 class Predatory_plant(Character):
     def __init__(self):
         super().__init__()
-        self.name = ''
+        self.name = 'Совершенно обычный цветок, только с небольшой пастью и зубами'
         self.picture = ''
-        self.hello = ''
+        self.hello = 'эй! да не туда смотри, левее, левее. Ага, в горшке.'
         self.goodbye = '' 
-        self.good_end = ''
-        self.trigger_good_end = ''
-        self.bad_end = ''
-        self.trigger_bad_end = '' 
-        self.death = ''
-        self.trigger_death = ''
-        self.neutral_end = ''
-        self.trigger_neutral_end = '' 
-        self.question = ''
-        self.close_to_end_coef = '' 
-        self.have_we_met_before = ''
-        self.level = ''
+        self.good_end = 'Ооо, вода со вкусом воды, спасибо! не уходи, у меня есть подарок *цветок роется под листьями и вручает вам стаканчик из-под кофе*'
+        self.trigger_good_end = '3'
+        self.bad_end = '*пока цветок летит до земли, до вас доносится пара проклятий. Вы живы, но под правой лопаткой что-то подозрительно чешется.*'
+        self.trigger_bad_end = '4' 
+        self.death = '*когда вы слышали, что энергетики вредят здоровью, то наверняка не представляли, что именно таким образом. Цветок пьет энергетик, вылезает из горшка и съедает вас. Вы мертвы.*'
+        self.trigger_death = '2'
+        self.neutral_end = '*Цветок не отвечает. Вы решаете, что нужно спать больше четырех часов.*'
+        self.trigger_neutral_end = '1' 
+        self.question = 'Полей меня.\n\n1. Ты умеешь разговаривать? \n2. *кажется, в вашей сумке оставался энергетик. Полить цветок энергетиком* \n3. *сходить за водой из куллера и полить цветок водой*\n4. О господи, говорящий цветок! *выбросить цветок в окно*'
+        self.close_to_end_coef = 1 
+        self.have_we_met_before = 0
+        self.level = 8
+        self.artefact = 'стаканчик из под кофе'
 
 class Wicket(Character):
     def __init__(self):
         super().__init__()
-        self.name = ''
+        self.name = 'Турникет'
         self.picture = ''
-        self.hello = ''
-        self.goodbye = '' 
-        self.good_end = ''
-        self.trigger_good_end = ''
+        self.hello = '...'
+        self.goodbye = '...' 
+        self.good_end = '*загорается зеленая стрелочка. вы проходите в корпус*'
+        self.trigger_good_end = '2'
         self.bad_end = ''
         self.trigger_bad_end = '' 
-        self.death = ''
-        self.trigger_death = ''
+        self.death = '*загорается зеленая лампочка. вы начинаете проходить, но турникет вдруг резко проворачивается и ломает вам спину. Скорая путает корпус на Печерке и с корпусом на Костина, и вы умираете.*'
+        self.trigger_death = '1'
         self.neutral_end = ''
         self.trigger_neutral_end = '' 
-        self.question = ''
-        self.close_to_end_coef = '' 
-        self.have_we_met_before = ''
-        self.level = ''
+        self.question = '... \n\n1. Приложить пропуск фотографией вверх\n2. Приложить пропуск фотографией вниз'
+        self.close_to_end_coef = 1
+        self.have_we_met_before = 0
+        self.level = 6
+        self.artefact = ''
+
+    #у турникета только два варианта - успех или смерть
+    def action(self, player):
+        super().action()
+        print(self.question)
+        player['player_is_dead'] = 0
+        answer = input('->')
+        if answer == self.trigger_good_end:
+            end = self.good_end
+            player['close_to_end_index'] += self.close_to_end_coef
+            player['artefacts'] += self.artefact
+        elif answer == self.trigger_death:
+            end = self.death
+            player['player_is_dead'] = 1
+        print(end)
 
 class Talking_pie(Character):
     def __init__(self):
         super().__init__()
-        self.name = ''
+        self.name = 'Говорящий пирог'
         self.picture = ''
-        self.hello = ''
-        self.goodbye = '' 
-        self.good_end = ''
-        self.trigger_good_end = ''
-        self.bad_end = ''
-        self.trigger_bad_end = '' 
-        self.death = ''
-        self.trigger_death = ''
-        self.neutral_end = ''
-        self.trigger_neutral_end = '' 
-        self.question = ''
-        self.close_to_end_coef = '' 
-        self.have_we_met_before = ''
-        self.level = ''
+        self.hello = '*в своих поисках вы заглядываете в столовую. с прилавка на вас смотрит пирог.* Какой я румяный, какой я вкусный...\n*вы решаете взять пирог.*'
+        self.goodbye = 'всё-таки приятно быть выбранным' 
+        self.good_end = '*вы съедаете пирог. он оказывается с луком, зато внутри есть бумажка. вы разворачиваете ее. записка гласит: звезд не видно в микроскоп*'
+        self.trigger_good_end = '3'
+        self.bad_end = '*Теперь у вас в сумке есть пирог.*'
+        self.trigger_bad_end = '4' 
+        self.death = '*пирог не отвечает. вы решаете съесть его, но как только вы откусываете кусочек, пирог отвечает.*\nРазговариваю!\n*вы пугаетесь и умираете. да, вот так.*'
+        self.trigger_death = '2'
+        self.neutral_end = 'не ешь меня, я это.... от бабушки ушел, от второй бабушки ушел, от ... от кого же еще ушел... *Пирог начинает вспоминать. вы недослушиваете и уходите. он продолжает вспоминать.*'
+        self.trigger_neutral_end = '1' 
+        self.question = 'почему ты меня выбрала? \n\n1. Пирог-пирог, я тебя съем.\n2. Ты тоже разговариваешь? \n3. *молча съесть пирог*\n4. *положить пирог в сумку*'
+        self.close_to_end_coef = 1 
+        self.have_we_met_before = 0
+        self.level = 9
+        self.artefact = 'записка'
 
 class The_clone(Character):
     def __init__(self):
         super().__init__()
-        self.name = ''
+        self.name = 'Злой клон Лосяша'
         self.picture = ''
-        self.hello = ''
-        self.goodbye = '' 
-        self.good_end = ''
-        self.trigger_good_end = ''
-        self.bad_end = ''
-        self.trigger_bad_end = '' 
-        self.death = ''
-        self.trigger_death = ''
-        self.neutral_end = ''
-        self.trigger_neutral_end = '' 
-        self.question = ''
-        self.close_to_end_coef = '' 
-        self.have_we_met_before = ''
-        self.level = ''
+        self.hello = 'Не феноменально.'
+        self.goodbye = 'И всё же не феноменально.' 
+        self.good_end = '*злой клон Лосяша уходит, не поблагодарив вас. он роняет ключи от космического корабля прошлогодней модели. вы забираете их себе*'
+        self.trigger_good_end = '4'
+        self.bad_end = 'Кофейная гуща - это ненаучно! *злой клон Лосяша уходит разочарованно и обиженно*'
+        self.trigger_bad_end = '2' 
+        self.death = '*вы не успеваете и заметить, как становитесь мертвы ретроградным юптером. сегодня явно не ваш день.*'
+        self.trigger_death = '3'
+        self.neutral_end = 'Ох уж эта молодежь, всё бы вам в интернете найти. *злой клон Лосяша разочарованно уходит*'
+        self.trigger_neutral_end = '1' 
+        self.question = 'Неправильный у вас институт, ни одного микроскопа нет. Как мне узнать свой гороскоп на сегодня?\n\n1. найти в интернете.\n2. давайте я лучше вам все по кофейной гуще расскажу. \n3. гороскоп - глупость\4. он есть в самом юго-восточном коворкинге'
+        self.close_to_end_coef = 1
+        self.have_we_met_before = 0
+        self.level = 10
+        self.artefact = 'космический корабль прошлогодней модели'
 
 class FGN_student(Character):
     def __init__(self):
