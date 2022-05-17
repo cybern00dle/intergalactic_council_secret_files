@@ -167,7 +167,7 @@ class FGN_student(Character):
         4. сказать, что тоже не знаете'''
         self.close_to_end_coef = 1
         self.have_we_met_before = 0
-        self.level = ''
+        self.level = 16
         self.artefact = 'купон на шаурму'
 
 class Booklets(Character):
@@ -223,7 +223,7 @@ class Booklets(Character):
         4. сказать, что ничего не понимаете в дизайне'''
         self.close_to_end_coef = 1
         self.have_we_met_before = 0
-        self.level = ''
+        self.level = 17
         self.artefact = 'два буклета ОП "Фундаментальная и прикладная лингвистика"'
 
 class Cleaner(Character):
@@ -272,7 +272,7 @@ class Cleaner(Character):
         4. сделать вид, что торопитесь на пару, и проигнорировать просьбу'''
         self.close_to_end_coef = 1
         self.have_we_met_before = 0
-        self.level = ''
+        self.level = 18
         self.artefact = 'вязаный воронёнок'
         
 class Timur(Character):
@@ -322,7 +322,7 @@ class Timur(Character):
         4. не очень вежливо отказаться'''
         self.close_to_end_coef = 1
         self.have_we_met_before = 0
-        self.level = ''
+        self.level = 19
         self.artefact = 'бумажный кинжал'
 
 class Strange_group(Character):
@@ -362,5 +362,5 @@ class Strange_group(Character):
         2. не соглашаться'''
         self.close_to_end_coef = 1
         self.have_we_met_before = 0
-        self.level = ''
+        self.level = 20
         self.artefact = 'книжечка "Тайны ФГН"'
