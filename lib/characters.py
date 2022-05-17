@@ -127,7 +127,7 @@ class FGN_student(Character):
         self.trigger_bad_end = '4'
         self.death = '''
         Студентка ФГН: чего?!
-        Томик прилетает Вам прямо в висок. Всё.
+        Библиотечная книжка прилетает Вам прямо в висок. Всё.
         '''
         self.trigger_death = '3'
         self.neutral_end = '''
