@@ -127,7 +127,6 @@ class FGN_student(Character):
         self.picture = ''
         self.hello = '''хей!
         Девушка, сидящая на скамейке, машет Вам рукой.
-        Вы решаете, что она может быть Вам полезна, и садитесь рядом.
         '''
         self.goodbye = 'до связи!'
         self.good_end = '''
