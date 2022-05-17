@@ -31,22 +31,31 @@ class Character:
         player['player_is_dead'] = 0
         answer = input('->')
         #дальше проверяем, триггером какого итога является ответ игрока
-        if answer == self.trigger_good_end:
-            end = self.good_end
-            player['close_to_end_index'] += self.close_to_end_coef
-            player['artefacts'] += self.artefact
-            #хороший итог добавляет очки игроку и дает артефакт
-        elif answer == self.trigger_bad_end:
-            end = self.bad_end
-            player['close_to_end_index'] -= self.close_to_end_coef
-            #плохой итог отнимает очки игрока
-        elif answer == self.trigger_death:
-            end = self.death
-            player['player_is_dead'] = 1
-            #если ответ приводит к смерти, в словаре игрок меняем значение на 1
-        else: 
-            end = self.neutral_end
-            #если игрок ввел с клавиатуры не пойми что, считаем, что это привело к нейтральному результату
+        while True:
+            if answer == self.trigger_good_end:
+                end = self.good_end
+                player['close_to_end_index'] += self.close_to_end_coef
+                player['artefacts'] += self.artefact
+                break
+                #хороший итог добавляет очки игроку и дает артефакт
+            elif answer == self.trigger_bad_end:
+                end = self.bad_end
+                player['close_to_end_index'] -= self.close_to_end_coef
+                break
+                #плохой итог отнимает очки игрока
+            elif answer == self.trigger_death:
+                end = self.death
+                player['player_is_dead'] = 1
+                break
+                #если ответ приводит к смерти, в словаре игрок меняем значение на 1
+            elif answer == self.trigger_neutral_end:
+                end = self.neutral_end
+                break
+                #нейтральный итог ничего не делает
+            else: 
+                print('Кажется, Вы ввели что-то не то. Проверьте модуль автоматического перевода на земной вышкинский на наличие повреждений. Если всё в норме, попробуйте ещё раз.')
+                answer = input('->')
+                #если игрок ввел с клавиатуры не пойми что, просим ввести ответ заново (потом можно поменять на смерть, дарк соулс)
         print(end)
     
     def meet_the_character(self):
