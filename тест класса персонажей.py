@@ -1,6 +1,7 @@
 from lib.character import Character
 import lib.scenes as sc
-from lib.characters import Hare, Fox
+#девочки, не забываем импортировать сюда своих персонажей, а также добавлять их в два списка ниже
+from lib.characters import The_clone, Talking_pie, The_lost_child, Wicket, Predatory_plant
 
 #создаем словарь с характеристиками игрока. считаем, что в начале он не мертв, и у него одно очко, список артефактов пуст
 player = {'close_to_end_index': 1, 'player_is_dead': 0, 'artefacts' : []}
@@ -13,7 +14,7 @@ while answer != '1':
     answer = input('->')
 
 #создаем список с персонажами. дальше пойдем в цикле по элементам списка(пока подряд, но потом придумаем механизм с уровнем)    
-character_list = [Hare(), Fox()]
+character_list = [The_clone(), Talking_pie(), The_lost_child(), Wicket(), Predatory_plant()]
 stop=False
 while stop == False:
     for character in character_list:
@@ -31,14 +32,27 @@ while stop == False:
                 stop == False
                 player['player_is_dead']=0
                 player['close_to_end_index'] = 1
-                character_list = [Hare(), Fox()]
+                character_list = [The_clone(), Talking_pie(), The_lost_child(), Wicket(), Predatory_plant()]
                 break
 
+#функция, которая подсчитывает собранные артефакты, показывает их игроку и решает, как собранные артефакты повлияют на бой с боссом
 def artefacts_collection(player):
-    if len(player['artefacts']) > 10:
+    final_artefacts = [value for value in player['artefacts'] if value != '']
+    i = input('Кажется, все разошлись по домам. В вышке никого не осталось. Вы решаете собраться с мыслями и замечаете, что ваша сумка стала очень тяжелой.\n\n1. Открыть сумку и посмотреть, что внутри\n2. Выбросить сумку.\n->')
+    if i == '1' and final_artefacts != []:
+        print('в вашей сумке вы находите: ', final_artefacts, '\nСохраните на будущее. Вдруг пригодится.')
+    elif i == '1' and final_artefacts == []:
+        print('Это не сумка тяжелая, а вы устали.')
+    else:
+        print('Странное решение. Но как хотите.')
+    if len(final_artefacts) > 10 or len(final_artefacts) == 10:
         artefacts_result = 'good'
-    elif len(player['artefacts']) < 10:
+    elif len(final_artefacts) < 10 and len(final_artefacts) > 5:
         artefacts_result = 'bad'
+    else:
+        artefacts_result = 'verybad'
     return(artefacts_result)
+   
+result_for_final_fight = artefacts_collection(player)
 
 # Настя! здесь нужно написать и вызвать функцию битвы с боссом. используй artefacts_result, чтобы узнать об артефактах
