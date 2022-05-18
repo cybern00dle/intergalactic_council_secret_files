@@ -38,6 +38,7 @@ while stop == False:
 #функция, которая подсчитывает собранные артефакты, показывает их игроку и решает, как собранные артефакты повлияют на бой с боссом
 def artefacts_collection(player):
     final_artefacts = [value for value in player['artefacts'] if value != '']
+    artefacts_number = len(final_artefacts)
     i = input('Кажется, все разошлись по домам. В вышке никого не осталось. Вы решаете собраться с мыслями и замечаете, что ваша сумка стала очень тяжелой.\n\n1. Открыть сумку и посмотреть, что внутри\n2. Выбросить сумку.\n->')
     if i == '1' and final_artefacts != []:
         print('в вашей сумке вы находите: ', final_artefacts, '\nСохраните на будущее. Вдруг пригодится.')
@@ -45,14 +46,18 @@ def artefacts_collection(player):
         print('Это не сумка тяжелая, а вы устали.')
     else:
         print('Странное решение. Но как хотите.')
-    if len(final_artefacts) > 10 or len(final_artefacts) == 10:
+    if artefacts_number > 10 or artefacts_number == 10:
         artefacts_result = 'good'
-    elif len(final_artefacts) < 10 and len(final_artefacts) > 5:
+    elif artefacts_number < 10 and artefacts_number > 5:
         artefacts_result = 'bad'
     else:
         artefacts_result = 'verybad'
-    return(artefacts_result)
+    return(artefacts_number, artefacts_result)
    
 result_for_final_fight = artefacts_collection(player)
+#количество артефактов
+artefacts_number = result_for_final_fight[0]
+#строка good, bad, verybad для определение концовки
+artefacts_result = result_for_final_fight[1]
 
 # Настя! здесь нужно написать и вызвать функцию битвы с боссом. используй artefacts_result, чтобы узнать об артефактах
