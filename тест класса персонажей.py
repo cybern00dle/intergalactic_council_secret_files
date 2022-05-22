@@ -13,32 +13,43 @@ while answer != '1':
     print(hello_text)
     answer = input('->')
 
-#создаем список с персонажами. дальше пойдем в цикле по элементам списка(пока подряд, но потом придумаем механизм с уровнем)    
-character_list = [The_clone(), Talking_pie(), The_lost_child(), Wicket(), Predatory_plant()]
-stop=False
-while stop == False:
-    for character in character_list:
-        if character == character_list[-1]:
-            stop = True
-        #пока персонажи идут подряд, цикл прерывается, когда мы доходим до последнего персонажа.
-        # Алёна, твоя задача!!! - Написать функцию - алгоритм выбора следующего персонажа, основываясь на коэффициенте близости игрока к концу и уровне персонажа. 
-        # Можно же проходиться по элементам списка в цикле и выбирать персонажа, который соответсвует нам по уровню. 
-        if character.have_we_met_before == 0:
-            res = sc.one_character_scene(character, hello_text, player)
-            if res == 1:
+#создаем 4 списка с персонажами, по одному на акт. дальше пойдем в цикле по элементам списка. шестым элементом списка указываем текст перед актом.
+character_list_act1 = []
+character_list_act2 = [Wicket(), The_lost_child(), Predatory_plant(), Talking_pie(), The_clone(), 'текст перед вторым актом']
+character_list_act3 = []
+character_list_act4 = []
+list_of_character_list = [character_list_act1, character_list_act2, character_list_act3, character_list_act4]
+for character_list in list_of_character_list:
+    print(character_list[6])
+    stop=False
+    while stop == False:
+        for character in character_list:
+            if character == character_list[-2]:
                 stop = True
-                break
-            elif res == 2:
-                stop == False
-                player['player_is_dead']=0
-                player['close_to_end_index'] = 1
-                character_list = [The_clone(), Talking_pie(), The_lost_child(), Wicket(), Predatory_plant()]
-                break
+            #пока персонажи идут подряд, цикл прерывается, когда мы доходим до последнего персонажа(но предпоследнего элемента, потому что последний элемент - текст перед актом)
+            if character.have_we_met_before == 0:
+                res = sc.one_character_scene(character, hello_text, player)
+                if res == 1:
+                    stop = True
+                    break
+                elif res == 2:
+                    stop == False
+                    player['player_is_dead']=0
+                    player['close_to_end_index'] = 1
+                    character_list_act1 = []
+                    character_list_act2 = [Wicket(), The_lost_child(), Predatory_plant(), Talking_pie(), The_clone()]
+                    character_list_act3 = []
+                    character_list_act4 = []
+                    break
 
 #функция, которая подсчитывает собранные артефакты, показывает их игроку и решает, как собранные артефакты повлияют на бой с боссом
 def artefacts_collection(player):
     final_artefacts = [value for value in player['artefacts'] if value != '']
     artefacts_number = len(final_artefacts)
+    if 'technical_artifact_2' in final_artefacts:
+        final_artefacts.remove('technical_artifact_2')
+    if 'technical_artifact_1' in final_artefacts:
+        final_artefacts.remove('technical_artifact_1')
     i = input('Кажется, все разошлись по домам. В вышке никого не осталось. Вы решаете собраться с мыслями и замечаете, что ваша сумка стала очень тяжелой.\n\n1. Открыть сумку и посмотреть, что внутри\n2. Выбросить сумку.\n->')
     if i == '1' and final_artefacts != []:
         print('в вашей сумке вы находите: ', final_artefacts, '\nСохраните на будущее. Вдруг пригодится.')
@@ -50,6 +61,8 @@ def artefacts_collection(player):
         artefacts_result = 'good'
     elif artefacts_number < 10 and artefacts_number > 5:
         artefacts_result = 'bad'
+    elif artefacts_number == 18:
+        artefacts_result = 'excellent'
     else:
         artefacts_result = 'verybad'
     return(artefacts_number, artefacts_result)
