@@ -1,7 +1,7 @@
 from lib.character import Character
 import lib.scenes as sc
 #девочки, не забываем импортировать сюда своих персонажей, а также добавлять их в два списка ниже
-from lib.characters import The_clone, Talking_pie, The_lost_child, Wicket, Predatory_plant
+from lib.characters import Captain, Emo_Janitor, The_Lost_Student, Sergeant_Peepers, Safety_Belt, The_clone, Talking_pie, The_lost_child, Wicket, Predatory_plant, Projector, Red_cat, Printer_station, Seagull_Charmer, Zhenya, FGN_student, Booklets, Cleaner, Timur, Strange_group
 
 #создаем словарь с характеристиками игрока. считаем, что в начале он не мертв, и у него одно очко, список артефактов пуст
 player = {'close_to_end_index': 1, 'player_is_dead': 0, 'artefacts' : []}
@@ -11,13 +11,25 @@ hello_text = 'добро пожаловать в текстовый квест �
 answer = ''
 while answer != '1':
     print(hello_text)
-    answer = input('->')
+    answer = input('-> ').lower().strip()
 
 #создаем 4 списка с персонажами, по одному на акт. дальше пойдем в цикле по элементам списка. шестым элементом списка указываем текст перед актом.
-character_list_act1 = []
-character_list_act2 = [Wicket(), The_lost_child(), Predatory_plant(), Talking_pie(), The_clone(), 'текст перед вторым актом']
-character_list_act3 = []
-character_list_act4 = []
+f = open('texts\\acts\\act1.txt')
+act1_text = f.read()
+f.close()
+f1 = open('texts\\acts\\act2.txt')
+act2_text = f1.read()
+f1.close()
+f2 = open('texts\\acts\\act3.txt')
+act3_text = f2.read()
+f2.close()
+f3 = open('texts\\acts\\act4.txt')
+act4_text = f3.read()
+f3.close()
+character_list_act1 = [Captain(), Emo_Janitor(), The_Lost_Student(), Sergeant_Peepers(), Safety_Belt(), act1_text]
+character_list_act2 = [Wicket(), The_lost_child(), Predatory_plant(), Talking_pie(), The_clone(), act2_text]
+character_list_act3 = [Projector(), Red_cat(), Printer_station(), Seagull_Charmer(), Zhenya(), act3_text]
+character_list_act4 = [FGN_student(), Booklets(), Cleaner(), Timur(), Strange_group(), act4_text]
 list_of_character_list = [character_list_act1, character_list_act2, character_list_act3, character_list_act4]
 for character_list in list_of_character_list:
     print(character_list[6])
@@ -36,10 +48,10 @@ for character_list in list_of_character_list:
                     stop == False
                     player['player_is_dead']=0
                     player['close_to_end_index'] = 1
-                    character_list_act1 = []
-                    character_list_act2 = [Wicket(), The_lost_child(), Predatory_plant(), Talking_pie(), The_clone()]
-                    character_list_act3 = []
-                    character_list_act4 = []
+                    character_list_act1 = [Captain(), Emo_Janitor(), The_Lost_Student(), Sergeant_Peepers(), Safety_Belt(), act1_text]
+                    character_list_act2 = [Wicket(), The_lost_child(), Predatory_plant(), Talking_pie(), The_clone(), act2_text]
+                    character_list_act3 = [Projector(), Red_cat(), Printer_station(), Seagull_Charmer(), Zhenya(), act3_text]
+                    character_list_act4 = [FGN_student(), Booklets(), Cleaner(), Timur(), Strange_group(), act4_text]
                     break
 
 #функция, которая подсчитывает собранные артефакты, показывает их игроку и решает, как собранные артефакты повлияют на бой с боссом
@@ -50,7 +62,7 @@ def artefacts_collection(player):
         final_artefacts.remove('technical_artifact_2')
     if 'technical_artifact_1' in final_artefacts:
         final_artefacts.remove('technical_artifact_1')
-    i = input('Кажется, все разошлись по домам. В вышке никого не осталось. Вы решаете собраться с мыслями и замечаете, что ваша сумка стала очень тяжелой.\n\n1. Открыть сумку и посмотреть, что внутри\n2. Выбросить сумку.\n->')
+    i = input('Кажется, все разошлись по домам. В вышке никого не осталось. Вы решаете собраться с мыслями и замечаете, что ваша сумка стала очень тяжелой.\n\n1. Открыть сумку и посмотреть, что внутри\n2. Выбросить сумку.\n-> ').lower().strip()
     if i == '1' and final_artefacts != []:
         print('в вашей сумке вы находите: ', final_artefacts, '\nСохраните на будущее. Вдруг пригодится.')
     elif i == '1' and final_artefacts == []:
