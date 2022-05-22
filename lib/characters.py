@@ -540,8 +540,8 @@ class Booklets(Character):
         self.artefact = 'Два Буклета ОП "Фундаментальная и прикладная лингвистика"'
 
 class Cleaner(Character):
-    def init(self):
-        super().init()
+    def __init__(self):
+        super().__init__()
         self.name = 'Уборщица'
         self.picture = ''
         self.hello = '''здравствуйте.
