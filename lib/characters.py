@@ -225,21 +225,6 @@ class Wicket(Character):
         self.level = 6
         self.artefact = ''
 
-    # у турникета только два варианта - успех или смерть
-    def action(self, player):
-        super().action()
-        print(self.question)
-        player['player_is_dead'] = 0
-        answer = input('->')
-        if answer == self.trigger_good_end:
-            end = self.good_end
-            player['close_to_end_index'] += self.close_to_end_coef
-            player['artefacts'] += self.artefact
-        elif answer == self.trigger_death:
-            end = self.death
-            player['player_is_dead'] = 1
-        print(end)
-
 class Talking_pie(Character):
     def __init__(self):
         super().__init__()
