@@ -29,13 +29,13 @@ class Character:
         #персонаж задает вопрос игроку, игрок объявляется еще не мертвым, мы просим ввести ответ
         print(self.question)
         player['player_is_dead'] = 0
-        answer = input('->')
+        answer = input('-> ')
         #дальше проверяем, триггером какого итога является ответ игрока
         while True:
             if answer == self.trigger_good_end:
                 end = self.good_end
                 player['close_to_end_index'] += self.close_to_end_coef
-                player['artefacts'] += self.artefact
+                player['artefacts'].append(self.artefact)
                 break
                 #хороший итог добавляет очки игроку и дает артефакт
             elif answer == self.trigger_bad_end:
@@ -54,7 +54,7 @@ class Character:
                 #нейтральный итог ничего не делает
             else: 
                 print('Кажется, Вы ввели что-то не то. Проверьте модуль автоматического перевода на земной вышкинский на наличие повреждений. Если всё в норме, попробуйте ещё раз.')
-                answer = input('->')
+                answer = input('-> ')
                 #если игрок ввел с клавиатуры не пойми что, просим ввести ответ заново (потом можно поменять на смерть, дарк соулс)
         print(end)
     
