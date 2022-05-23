@@ -26,15 +26,22 @@ f2.close()
 f3 = open('lib\\texts\\acts\\act4.txt', 'r', encoding='utf-8')
 act4_text = f3.read()
 f3.close()
-character_list_act1 = [Captain(), Emo_Janitor(), The_Lost_Student(), Sergeant_Peepers(), Safety_Belt(), act1_text]
-character_list_act2 = [Wicket(), The_lost_child(), Predatory_plant(), Talking_pie(), The_clone(), act2_text]
-character_list_act3 = [Projector(), Red_cat(), Printer_station(), Seagull_Charmer(), Zhenya(), act3_text]
-character_list_act4 = [FGN_student(), Booklets(), Cleaner(), Timur(), Strange_group(), act4_text]
-list_of_character_list = [character_list_act1, character_list_act2, character_list_act3, character_list_act4]
-for character_list in list_of_character_list:
-    print(character_list[5])
-    stop = False
-    while stop == False:
+
+def get_list_of_character_list():
+    character_list_act1 = [Captain(), Emo_Janitor(), The_Lost_Student(), Sergeant_Peepers(), Safety_Belt(), act1_text]
+    character_list_act2 = [Wicket(), The_lost_child(), Predatory_plant(), Talking_pie(), The_clone(), act2_text]
+    character_list_act3 = [Projector(), Red_cat(), Printer_station(), Seagull_Charmer(), Zhenya(), act3_text]
+    character_list_act4 = [FGN_student(), Booklets(), Cleaner(), Timur(), Strange_group(), act4_text]
+    list_of_character_list = [character_list_act1, character_list_act2, character_list_act3, character_list_act4]
+    return list_of_character_list
+
+list_of_character_list = get_list_of_character_list()
+
+stop = False
+while stop == False:
+    player['player_is_dead'] = 0
+    for character_list in list_of_character_list:
+        print(character_list[-1])
         for character in character_list:
             if character == character_list[-2]:
                 stop = True
@@ -42,19 +49,19 @@ for character_list in list_of_character_list:
             if not isinstance(character, str):
                 if character.have_we_met_before == 0:
                     res = sc.one_character_scene(character, hello_text, player)
+
                     if res == 1:
                         stop = True
                         break
                     elif res == 2:
                         stop = False
-                        player['player_is_dead'] = 0
                         player['close_to_end_index'] = 1
-                        character_list_act1 = [Captain(), Emo_Janitor(), The_Lost_Student(), Sergeant_Peepers(), Safety_Belt(), act1_text]
-                        character_list_act2 = [Wicket(), The_lost_child(), Predatory_plant(), Talking_pie(), The_clone(), act2_text]
-                        character_list_act3 = [Projector(), Red_cat(), Printer_station(), Seagull_Charmer(), Zhenya(), act3_text]
-                        character_list_act4 = [FGN_student(), Booklets(), Cleaner(), Timur(), Strange_group(), act4_text]
+                        list_of_character_list = get_list_of_character_list()
                         break
-
+            if player['player_is_dead'] == 1:
+                break
+        if player['player_is_dead'] == 1:
+            break
 
 def artefacts_collection(player):
     final_artefacts = [value for value in player['artefacts'] if value != '']
@@ -74,7 +81,8 @@ def artefacts_collection(player):
         print('Это не сумка тяжелая, а Вы устали.')
     else:
         print('Странное решение. Но как хотите.')
-        # ТУТ НАДО УДАЛИТЬ ВСЕ АРТЕФАКТЫ
+        artefacts_number = 0
+        # ТУТ НАДО УДАЛИТЬ ВСЕ АРТЕФАКТЫ - я не чистю список с артефактами, потому что он только внутри этой функции, а вместо этого считаю, что количесвто артефактов равно нолю. мы ведь только количество возвращаем
 
     return(artefacts_number)
 
