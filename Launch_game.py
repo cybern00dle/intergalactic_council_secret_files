@@ -28,6 +28,7 @@ act4_text = f3.read()
 f3.close()
 
 def get_list_of_character_list():
+    player['artefacts']=[]
     character_list_act1 = [Captain(), Emo_Janitor(), The_Lost_Student(), Sergeant_Peepers(), Safety_Belt(), act1_text]
     character_list_act2 = [Wicket(), The_lost_child(), Predatory_plant(), Talking_pie(), The_clone(), act2_text]
     character_list_act3 = [Projector(), Red_cat(), Printer_station(), Seagull_Charmer(), Zhenya(), act3_text]
@@ -263,3 +264,4 @@ def ending_scene(health_bar, player, artefacts_result):
 
 
 ending_scene(health_bar, player, artefacts_result)
+the_end = input('для выхода из игры нажмите enter')
